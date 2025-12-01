@@ -3,11 +3,14 @@
 #include <string>
 using namespace std;
 
-int part1() {
+int part1()
+{
     ifstream file("input.txt");
     if (!file)
+    {
         cerr << "Error opening file.\n";
         return -1;
+    }
 
     int current = 50;
     int sol = 0;
@@ -34,9 +37,11 @@ int part1() {
     return sol;
 }
 
-int part2() {
+int part2()
+{
     ifstream file("input.txt");
-    if (!file) {
+    if (!file)
+    {
         cerr << "Error opening file.\n";
         return -1;
     }
@@ -46,7 +51,7 @@ int part2() {
 
     string line;
     while (getline(file, line))
-    {   
+    {
         int previous = current;
         int rotate = stoi(line.substr(1));
         sol += rotate / 100;
@@ -60,7 +65,8 @@ int part2() {
         if (current < 0)
         {
             current += 100;
-            if (previous != 0) sol++;
+            if (previous != 0)
+                sol++;
         }
         else if (current == 0)
             sol++;
@@ -79,7 +85,8 @@ int part2() {
     return sol;
 }
 
-int main() {
+int main()
+{
     cout << "Part 1 solution: " << part1() << "\n";
     cout << "Part 2 solution: " << part2() << "\n";
     return 0;
