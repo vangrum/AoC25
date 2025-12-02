@@ -1,3 +1,0 @@
-C:/Users/vangr/projects/AoC25/Day01/build/CMakeFiles/Day01.dir
-C:/Users/vangr/projects/AoC25/Day01/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/vangr/projects/AoC25/Day01/build/CMakeFiles/ZERO_CHECK.dir
