@@ -76,8 +76,21 @@ long long part2()
 
         long long n = nums.size();
         vector<int> current;
-
         
+        int prev = 0;
+        for(int i=0; i<12; i++){
+            int m = 0;
+            for(int k=prev; k<=n-12+i; k++){
+                if(nums[k]>m){
+                    m=nums[k];
+                    prev = k+1;
+                }
+                if(m==9){
+                    break;
+                }
+            }
+            current.push_back(m);
+        }
 
         long long num = 0;
         for (int d : current)
