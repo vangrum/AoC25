@@ -3,7 +3,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
-#include <set>
+#include <algorithm>
 
 using namespace std;
 
@@ -118,66 +118,34 @@ long long part2()
         }
     }
 
-    set<pair<long long, long long>> temp_ranges;
+    sort(ranges.begin(), ranges.end());
 
-    for (auto a : ranges)
-    {
-        long long lower = a.first;
-        long long upper = a.second;
-        for (auto b : ranges)
+    vector<pair<long long, long long>> new_ranges;
+
+    for(int i = 1; i<ranges.size(); i++){
+        auto &a = ranges[i-1];
+        auto &b = ranges[i];
+
+        if(b.first<=a.second)
         {
-            if (b.first < lower && b.second > lower)
-            {
-                lower = b.first;
-            }
-            else if (b.first < upper && b.second > upper)
-            {
-                upper = b.second;
-            }
-            else if (b.first > lower && b.second < upper)
-            {
-                continue;
-            }
+            b.first = a.first;
+            b.second = max(a.second, b.second);
         }
-        temp_ranges.insert(make_pair(lower, upper));
-    }
-
-    set<pair<long long, long long>> new_ranges;
-
-    for (set<pair<long long, long long>>::iterator it1 = temp_ranges.begin(); it1 != temp_ranges.end(); it1++)
-    {
-        bool valid = true;
-        for (set<pair<long long, long long>>::iterator it2 = temp_ranges.begin(); it2 != temp_ranges.end(); it2++)
+        else
         {
-            if (it1 == it2)
-                continue;
-            if (it1->first >= it2->first && it1->second <= it2->second)
-            {
-                valid = false;
-                break;
-            }
+            new_ranges.push_back(a);
         }
-        if (valid)
-        {
-            new_ranges.insert(*it1);
+        if(i==ranges.size()-1){
+            new_ranges.push_back(b);
         }
     }
 
-    set<long long> seen;
-    for (auto [l, u] : new_ranges)
+    for(auto [l, u] : new_ranges)
     {
-        cout << l << ' ' << u << endl;
-        sol += u - l + 1;
-        if(seen.count(l)!=0){
-            sol--;
-        }
-        if(seen.count(u)!=0){
-            sol--;
-        }
-        seen.insert(l);
-        seen.insert(u);
+        cout<<l<<' '<<u<<endl;
+        sol+=u-l+1;
     }
-
+    
     return sol;
 }
 
