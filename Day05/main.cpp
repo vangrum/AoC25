@@ -37,10 +37,8 @@ long part1()
 
     for (auto &c : content)
     {
-        // cout<<c.size()<<endl;
         if (c.size() == 2)
         {
-            // cout<<stol(c[0])<<' '<<stol(c[1])<<endl;
             ranges.push_back(make_pair(stoll(c[0]), stoll(c[1])));
         }
         if (c.size() == 0)
@@ -49,7 +47,6 @@ long part1()
         }
         if (c.size() == 1)
         {
-            // cout << stol(c[0])<<endl;
             ids.push_back(stoll(c[0]));
         }
     }
@@ -59,7 +56,6 @@ long part1()
         bool fresh = false;
         for (pair<long long, long long> range : ranges)
         {
-            // cout<<id<<' '<<range.first<<' '<<range.second<<endl;
             if (id >= range.first && id <= range.second)
             {
                 fresh = true;
@@ -142,7 +138,6 @@ long long part2()
 
     for(auto [l, u] : new_ranges)
     {
-        cout<<l<<' '<<u<<endl;
         sol+=u-l+1;
     }
     
