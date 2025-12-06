@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int part1(){
+long long part1(){
     ifstream file("input.txt");
     if (!file)
         {
@@ -12,7 +12,7 @@ int part1(){
             return -1;
         }
 
-    int sol;
+    long long sol = 0;
 
     string line;
     while (getline(file, line)){
@@ -23,7 +23,7 @@ int part1(){
     return sol;
 }
 
-int part2(){
+long long part2(){
     ifstream file("input.txt");
     if (!file)
         {
@@ -31,7 +31,7 @@ int part2(){
             return -1;
         }
 
-    int sol;
+    long long sol = 0;
 
     string line;
     while (getline(file, line)){
