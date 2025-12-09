@@ -43,4 +43,5 @@
 #build files
 build/
 
+template*/
 .vscode
