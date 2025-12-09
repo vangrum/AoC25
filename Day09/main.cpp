@@ -72,43 +72,42 @@ long long part2()
             {
                 bool valid = true;
 
-                int min_x = min(p1.x, p2.x);
-                int max_x = max(p1.x, p2.x);
-                int min_y = min(p1.y, p2.y);
-                int max_y = max(p1.y, p2.y);
+                int p_min_x = min(p1.x, p2.x);
+                int p_max_x = max(p1.x, p2.x);
+                int p_min_y = min(p1.y, p2.y);
+                int p_max_y = max(p1.y, p2.y);
 
-                for (int y = min_y + 1; y < max_y; y++)
+                for (int i = 0; i < n; i++)
                 {
-                    for (int x = min_x + 1; x < max_x; x++)
+                    Point v1 = points[i];
+                    Point v2 = points[(i + 1) % n];
+
+                    int v_min_x = min(v1.x, v2.x);
+                    int v_max_x = max(v1.x, v2.x);
+                    int v_min_y = min(v1.y, v2.y);
+                    int v_max_y = max(v1.y, v2.y);
+
+                    if (v_min_x == v_max_x)
                     {
-                        int crossings = 0;
-
-                        for (int i = 0; i < n; i++)
+                        if (p_min_x < v_max_x && v_max_x < p_max_x)
                         {
-                            Point v1 = points[i];
-                            Point v2 = points[(i + 1) % n];
-
-                            if (v1.x == v2.x)
+                            if (!(v_max_y <= p_min_y || v_min_y >= p_max_y))
                             {
-                                if ((y > min(v1.y, v2.y)) && (y <= max(v1.y, v2.y)))
-                                {
-                                    if (v1.x <= x)
-                                    {
-                                        crossings++;
-                                    }
-                                }
+                                valid = false;
+                                break;
                             }
                         }
-
-                        if (crossings % 2 == 0)
-                        {
-                            valid = false;
-                            break;
-                        }
                     }
-                    if (!valid)
+                    else if (v_min_y == v_max_y)
                     {
-                        break;
+                        if (p_min_y < v_max_y && v_max_y < p_max_y)
+                        {
+                            if (!(v_max_x <= p_min_x || v_min_x >= p_max_x))
+                            {
+                                valid = false;
+                                break;
+                            }
+                        }
                     }
                 }
 
@@ -125,7 +124,7 @@ long long part2()
 
 int main()
 {
-    // cout << "Part 1 solution: " << part1() << "\n";
+    cout << "Part 1 solution: " << part1() << "\n";
     cout << "Part 2 solution: " << part2() << "\n";
 
     return 0;

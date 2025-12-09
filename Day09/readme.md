@@ -2,4 +2,4 @@ Prvi del:
 Preverimo vsak par vozlišč in beležimo maksmialno površino.
 
 Drugi del:
-Brute force - preverimo vsak piksel v vsakem pravokotniku, če leži zunaj ali znotraj poligona.
+Brute force - za vsak pravokotnik preverimo, če je znotraj njega rob in če je, je tak pravokotnik neveljaven - O(n^3).
